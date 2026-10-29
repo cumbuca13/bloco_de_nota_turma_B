@@ -401,6 +401,15 @@ a geração de IDs e todos os casos da regra de conflito `resolveMerge`.
 | --- | --- | --- |
 | <img src="docs/screenshots/lista.jpg" width="220"> | <img src="docs/screenshots/nova-nota.jpg" width="220"> | <img src="docs/screenshots/editar.jpg" width="220"> |
 
+### Pesquisa
+
+| Pesquisa pelo conteúdo |
+| --- |
+| <img src="docs/screenshots/pesquisa.jpg" width="220"> |
+
+A busca por "jka" encontra a nota "comandos importantes" pelo **conteúdo**
+(`jkaklskhdh...`), mesmo sem o termo aparecer no título.
+
 ### Filtro por categoria
 
 | Estudos | Trabalho | Pessoal |
