@@ -1,4 +1,4 @@
-# 📝 Bloco de Notas — Turma B
+# Bloco de Notas — Turma B
 
 Aplicativo Flutter de bloco de notas com **armazenamento local (SQLite)** e
 **sincronização com a nuvem (Firebase Cloud Firestore)**. O usuário entra com
@@ -99,7 +99,7 @@ flutter test
 
 ## 4. Configuração do Firebase
 
-O repositório já aponta para o projeto Firebase `bdbloco` (arquivos
+O repositório já aponta para o projeto Firebase `notepad-cumbuca` (arquivos
 `lib/firebase_options.dart` e `android/app/google-services.json`). Para usar o
 **seu próprio** projeto Firebase:
 
@@ -389,19 +389,50 @@ a geração de IDs e todos os casos da regra de conflito `resolveMerge`.
 
 > As imagens ficam na pasta [`docs/screenshots`](docs/screenshots).
 
-| Login | Lista com categorias | Pesquisa |
-| --- | --- | --- |
-| ![Login](docs/screenshots/login.png) | ![Lista](docs/screenshots/lista.png) | ![Pesquisa](docs/screenshots/pesquisa.png) |
+### Autenticação
 
-| Editar nota / categoria | Lixeira | Offline |
+| Login | Cadastro | Lista vazia (sincronizado ✅) |
 | --- | --- | --- |
-| ![Editar](docs/screenshots/editar.png) | ![Lixeira](docs/screenshots/lixeira.png) | ![Offline](docs/screenshots/offline.png) |
+| <img src="docs/screenshots/login.jpg" width="220"> | <img src="docs/screenshots/cadastro.jpg" width="220"> | <img src="docs/screenshots/lista-vazia.jpg" width="220"> |
+
+### Notas e categorias
+
+| Lista com categorias | Nova nota | Editar nota (seleção de categoria) |
+| --- | --- | --- |
+| <img src="docs/screenshots/lista.jpg" width="220"> | <img src="docs/screenshots/nova-nota.jpg" width="220"> | <img src="docs/screenshots/editar.jpg" width="220"> |
+
+### Filtro por categoria
+
+| Estudos | Trabalho | Pessoal |
+| --- | --- | --- |
+| <img src="docs/screenshots/filtro-estudos.jpg" width="220"> | <img src="docs/screenshots/filtro-trabalho.jpg" width="220"> | <img src="docs/screenshots/filtro-pessoal.jpg" width="220"> |
+
+### Lixeira e modo offline
+
+| Lixeira com "Desfazer" | Offline: nota pendente e aviso de erro |
+| --- | --- |
+| <img src="docs/screenshots/lixeira.jpg" width="220"> | <img src="docs/screenshots/offline.jpg" width="220"> |
+
+No print offline, com o modo avião ligado, o ícone de nuvem fica laranja, a
+nota "modo offline" mostra o ícone de envio pendente e o app avisa que ela
+ficou salva no aparelho. Ao reconectar, a nota é enviada ao Firestore.
 
 ### Evidências no Firebase
 
-| Notas no Firestore | Usuários no Authentication | Regras publicadas |
-| --- | --- | --- |
-| ![Firestore](docs/screenshots/firestore-notas.png) | ![Auth](docs/screenshots/firebase-auth.png) | ![Regras](docs/screenshots/firestore-regras.png) |
+**Notas gravadas no Cloud Firestore** em `users/{uid}/notes/{id}`, com os
+campos `uid`, `title`, `content`, `category`, `createdAt`, `updatedAt` e
+`deletedAt`:
+
+![Notas no Firestore](docs/screenshots/firestore-notas.png)
+
+**Usuário cadastrado no Firebase Authentication.** O UID é o mesmo da pasta
+`users/{uid}` no Firestore:
+
+![Usuários no Authentication](docs/screenshots/firebase-auth.png)
+
+**Regras de segurança publicadas** (`firestore.rules`):
+
+![Regras publicadas](docs/screenshots/firestore-regras.png)
 
 ---
 
@@ -424,6 +455,9 @@ a geração de IDs e todos os casos da regra de conflito `resolveMerge`.
 | `lib/screens/login_page.dart`, `register_page.dart` | Navegação pelo `AuthGate` e mensagens de erro |
 | `lib/widgets/*` | Cartão com categoria/pendência, botão de sincronização, diálogo de categoria |
 | `firestore.rules`, `firebase.json` | **Novo** — regras de segurança e configuração para publicá-las |
+| `lib/firebase_options.dart`, `android/app/google-services.json` | App reconfigurado (`flutterfire configure`) para o projeto Firebase `notepad-cumbuca` |
+| `android/app/build.gradle.kts` | Versão do Android NDK fixada em `30.0.16248370` (a versão instalada no ambiente de desenvolvimento) |
+| `docs/screenshots/` | **Novo** — capturas do app e do console do Firebase |
 | `test/sync_logic_test.dart` | **Novo** — testes unitários |
 
 ---
